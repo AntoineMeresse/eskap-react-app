@@ -16,7 +16,7 @@ function EskapList() {
     }, []);
 
     return (
-        <div className="eskapList">
+        <div className="eskapList" style={{display: 'flex', flexDirection: 'row'}}>
             {
                 eskapList.map((elem, index) => <EskapItem eskap={elem}/>)
             }
