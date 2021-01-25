@@ -6,6 +6,14 @@ function EskapItem({eskap}) {
     const {id, name, address, theme, difficulty, price} = eskap;
     const {number, street, city} = address;
     
+    function addEskap(id) {
+        console.log("Add eskap game ==> Id : "+id);
+    }
+
+    function removeEskap(id) {
+        console.log("Remove eskap game ==> Id : "+id);
+    }
+
     return (
         <Card className="eskapItem m-1" style={{width: '24%'}}>
             <Card.Body>
@@ -17,8 +25,8 @@ function EskapItem({eskap}) {
                     <ListGroup.Item>Price : {price}</ListGroup.Item>
                 </ListGroup>
                 <div className="eskapItem-buttons">
-                    <Button className="w-50" variant="success">Add</Button>
-                    <Button className="w-50" variant="danger">Remove</Button>
+                    <Button className="w-50" variant="success" onClick={() => addEskap(id)}>Add</Button>
+                    <Button className="w-50" variant="danger"  onClick={() => removeEskap(id)}>Remove</Button>
                 </div>
             </Card.Body>
         </Card>
