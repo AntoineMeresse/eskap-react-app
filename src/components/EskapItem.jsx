@@ -3,8 +3,8 @@ import { Card, Button, ListGroup } from 'react-bootstrap'
 
 function EskapItem({eskap}) {
 
-    const {id, name, address, theme, difficulty, price} = eskap;
-    const {number, street, city} = address;
+    const {id, name, number, street, city, theme, difficulty, price} = eskap;
+    const address = `${number} ${street} ${city}`;
     
     function addEskap(id) {
         console.log("Add eskap game ==> Id : "+id);
@@ -18,7 +18,7 @@ function EskapItem({eskap}) {
         <Card className="eskapItem m-1" style={{width: '24%'}}>
             <Card.Body>
                 <Card.Title>{name} | id : {id} </Card.Title>
-                <Card.Subtitle>{`Address : ${number} ${street} ${city}`}</Card.Subtitle>
+                <Card.Subtitle>{`Address : ${address}`}</Card.Subtitle>
                 <ListGroup variant="list-group-flush m-2">
                     <ListGroup.Item>Theme : {theme}</ListGroup.Item>
                     <ListGroup.Item>Difficulty : {difficulty}</ListGroup.Item>
