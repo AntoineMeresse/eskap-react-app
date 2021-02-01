@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { Card, Button, ListGroup } from 'react-bootstrap'
 import axios from '../axios';
+import {Link} from "react-router-dom";
 
 function EskapItem({eskap, filter}) {
 
@@ -26,7 +27,7 @@ function EskapItem({eskap, filter}) {
             {((filter === "all") || (filter === "officials" && isOfficial) || (filter === "nonofficials" && !isOfficial))&&
                <Card className="eskapItem m-1" style={{width: '24%'}}>
                     <Card.Body>
-                        <Card.Title>{name} | id : {id} </Card.Title>
+                        <Card.Title><Link to={`/${id}`}>{name} | id : {id} </Link></Card.Title>
                         <Card.Subtitle>{`Address : ${address}`}</Card.Subtitle>
                         <ListGroup variant="list-group-flush m-2">
                             <ListGroup.Item>Theme : {themes.map((e) => <span>{e}</span>)}</ListGroup.Item>
