@@ -36,7 +36,7 @@ function EskapItem({eskap, filter}) {
                         </ListGroup>
                         <div className="eskapItem-buttons">
                             <Button className="w-50" onClick={() => changeFavState(id)}>
-                                {!official ? "Add To Officials" : "Remove from Officials"}
+                                {!isOfficial ? "Add To Officials" : "Remove from Officials"}
                             </Button>
                             <Button className="w-50" variant="danger"  onClick={() => removeEskap(id)}>Remove</Button>
                         </div>
