@@ -8,13 +8,12 @@ function EskapList() {
     const [eskapList, setEskapList] = useState([]);
     const [eskapFilter, setEskapFilter] = useState('/');
 
-    useEffect(() => {
-        async function fetchData() {
-            const req = await axios.get('/eskaps'+eskapFilter);
-            setEskapList(req.data);
-        }
-        fetchData();
-    }, [eskapFilter]);
+    async function fetchData() {
+        const req = await axios.get('/eskaps'+eskapFilter);
+        setEskapList(req.data);
+    }
+
+    useEffect(fetchData, [eskapFilter, fetchData]);
 
     return (
         <>
@@ -25,7 +24,7 @@ function EskapList() {
             </select>
             <div className="eskapList" style={{display: 'flex', flexDirection: 'row'}}>
                 {
-                    eskapList.map((elem, index) => <EskapItem eskap={elem}/>)
+                    eskapList.length > 0 ? eskapList.map((elem, index) => <EskapItem eskap={elem} key={index} reload={fetchData}/>) : <p>Empty List</p>
                 }
             </div>
         </>

@@ -1,17 +1,23 @@
 import React from 'react'
 import { Card, Button, ListGroup } from 'react-bootstrap'
+import axios from '../axios';
 
-function EskapItem({eskap}) {
+function EskapItem({eskap, reload}) {
 
-    const {id, name, number, street, city, theme, difficulty, price} = eskap;
+    const {id, name, number, street, city, theme, difficulty, price, official} = eskap;
     const address = `${number} ${street} ${city}`;
-    
-    function addEskap(id) {
-        console.log("Add eskap game ==> Id : "+id);
-    }
 
     function removeEskap(id) {
         console.log("Remove eskap game ==> Id : "+id);
+    }
+
+    async function changeFavState(id) {
+        const method = official ? "deleteofficial" : "addofficial"; 
+        const response = await axios.put(`/eskaps/${method}/${id}`);
+        if (response.status === 200) {
+            // Method than call api again to get new list
+            reload();
+        }
     }
 
     return (
@@ -25,7 +31,9 @@ function EskapItem({eskap}) {
                     <ListGroup.Item>Price : {price}</ListGroup.Item>
                 </ListGroup>
                 <div className="eskapItem-buttons">
-                    <Button className="w-50" variant="success" onClick={() => addEskap(id)}>Add</Button>
+                    <Button className="w-50" onClick={() => changeFavState(id)}>
+                        {!official ? "Add To Officials" : "Remove from Officials"}
+                    </Button>
                     <Button className="w-50" variant="danger"  onClick={() => removeEskap(id)}>Remove</Button>
                 </div>
             </Card.Body>
