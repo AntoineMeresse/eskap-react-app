@@ -6,25 +6,26 @@ import axios from '../axios';
 function EskapList() {
 
     const [eskapList, setEskapList] = useState([]);
-    const [eskapFilter, setEskapFilter] = useState('/');
+    const [eskapFilter, setEskapFilter] = useState('all');
 
-    async function fetchData() {
-        const req = await axios.get('/eskaps'+eskapFilter);
-        setEskapList(req.data);
-    }
-
-    useEffect(fetchData, [eskapFilter, fetchData]);
+    useEffect(() => {
+        async function fetchData() {
+            const req = await axios.get('/eskaps/');
+            setEskapList(req.data);
+        }
+        fetchData();
+    } , []);
 
     return (
         <>
             <select value={eskapFilter} onChange={(event) => setEskapFilter(event.target.value)}>
-                <option value='/'>All Eskaps</option>
-                <option value="/officials/">Official</option>
-                <option value="/nonofficials/">Non Official</option>
+                <option value='all'>All Eskaps</option>
+                <option value="officials">Official</option>
+                <option value="nonofficials">Non Official</option>
             </select>
             <div className="eskapList" style={{display: 'flex', flexDirection: 'row'}}>
                 {
-                    eskapList.length > 0 ? eskapList.map((elem, index) => <EskapItem eskap={elem} key={index} reload={fetchData}/>) : <p>Empty List</p>
+                    eskapList.length > 0 ? eskapList.map((elem, index) => <EskapItem eskap={elem} key={index} filter={eskapFilter}/>) : <p>Empty List</p>
                 }
             </div>
         </>
