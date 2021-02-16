@@ -8,7 +8,8 @@ function EskapInfo() {
 
     const [name, setName] = useState("");
     const [difficulty, setDifficulty] = useState("");
-    const [price, setPrice] = useState(0);
+    const [minprice, setMinPrice] = useState(0);
+    const [maxprice, setMaxPrice] = useState(0);
     const [imgurl, setImgUrl] = useState("");
     const [description, setDescription] = useState("");
     const [number, setNumber] = useState(0);
@@ -26,7 +27,8 @@ function EskapInfo() {
             //console.log(res);
             setName(res.name);
             setDifficulty(res.difficulty);
-            setPrice(res.price);
+            setMinPrice(res.minprice);
+            setMaxPrice(res.maxprice);
             setImgUrl(res.imgurl);
             setDescription(res.description);
             setNumber(res.number);
@@ -46,7 +48,8 @@ function EskapInfo() {
             <form>
                 <div><label>Nom : <input type="text" value={name} onChange={(event) => setName(event.target.value)}/></label></div>
                 <div><label>Difficulty : <input type="text" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}/></label></div>
-                <div><label>Price : <input type="number" value={price} onChange={(event) => setPrice(event.target.value)}/></label></div>
+                <div><label>Min Price : <input type="number" value={minprice} onChange={(event) => setMinPrice(event.target.value)}/></label></div>
+                <div><label>Max Price : <input type="number" value={maxprice} onChange={(event) => setMaxPrice(event.target.value)}/></label></div>
                 <div><label>ImageUrl : <input type="text" value={imgurl} onChange={(event) => setImgUrl(event.target.value)}/></label></div>
                 <div><label>Description : <input type="text" value={description} onChange={(event) => setDescription(event.target.value)}/></label></div>
                 <div><label>Number : <input type="number" value={number} onChange={(event) => setNumber(event.target.value)}/></label></div>
@@ -56,6 +59,7 @@ function EskapInfo() {
                 <div><label>latitude : <input type="number" value={latitude} onChange={(event) => setLatitude(event.target.value)}/></label></div>
                 <div><label>longitude : <input type="number" value={longitude} onChange={(event) => setLongitude(event.target.value)}/></label></div>
                 <div><label>official : <input type="checkbox" checked={official} onChange={() => setOfficial(!official)}/></label></div>
+                <button>Change datas</button>
             </form>
         </div>
     )

@@ -5,13 +5,14 @@ import {Link} from "react-router-dom";
 
 function EskapItem({eskap, filter}) {
 
-    const {id, name, number, street, city, themes, difficulty, price, official} = eskap;
+    const {id, name, number, street, city, themes, difficulty, minprice, maxprice, official} = eskap;
     const address = `${number} ${street} ${city}`;
     const [isOfficial, setIsOfficial] = useState(official);
 
 
-    function removeEskap(id) {
+    async function removeEskap(id) {
         console.log("Remove eskap game ==> Id : "+id);
+        //await axios.delete(`/eskaps/${id}`);
     }
 
     async function changeFavState(id) {
@@ -25,14 +26,14 @@ function EskapItem({eskap, filter}) {
     return (
         <>
             {((filter === "all") || (filter === "officials" && isOfficial) || (filter === "nonofficials" && !isOfficial))&&
-               <Card className="eskapItem m-1" style={{width: '24%'}}>
+               <Card className="eskapItem m-1" style={{}}>
                     <Card.Body>
                         <Card.Title><Link to={`/${id}`}>{name} | id : {id} </Link></Card.Title>
-                        <Card.Subtitle>{`Address : ${address}`}</Card.Subtitle>
+                        <Card.Subtitle>{`Adresse : ${address}`}</Card.Subtitle>
                         <ListGroup variant="list-group-flush m-2">
-                            <ListGroup.Item>Theme : {themes.map((e) => <span>{e}</span>)}</ListGroup.Item>
-                            <ListGroup.Item>Difficulty : {difficulty}</ListGroup.Item>
-                            <ListGroup.Item>Price : {price}</ListGroup.Item>
+                            <ListGroup.Item><h3>Themes : </h3> <ul>{themes.map((e) => <li>{e}</li>)}</ul></ListGroup.Item>
+                            <ListGroup.Item>Difficulté : {difficulty}</ListGroup.Item>
+                            <ListGroup.Item>Prix : de {minprice} à {maxprice} €</ListGroup.Item>
                         </ListGroup>
                         <div className="eskapItem-buttons">
                             <Button className="w-50" onClick={() => changeFavState(id)}>
