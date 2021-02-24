@@ -10,16 +10,19 @@ function EskapList() {
 
     const [filtre, setFiltre] = useState("");
 
+    async function fetchData() {
+        console.log("Fetch data");
+        const req = await axios.get('/eskaps/');
+        setEskapList(req.data);
+    }
+
     useEffect(() => {
-        async function fetchData() {
-            const req = await axios.get('/eskaps/');
-            setEskapList(req.data);
-        }
         fetchData();
     } , []);
 
     return (
         <>
+            <button onClick={fetchData}>Reload</button>
             <select value={eskapFilter} onChange={(event) => setEskapFilter(event.target.value)}>
                 <option value='all'>All Eskaps</option>
                 <option value="officials">Official</option>
@@ -28,7 +31,11 @@ function EskapList() {
             <input placeholder="Nom" type="text" value={filtre} onChange={(event) => setFiltre(event.target.value)}></input>
             <div className="eskapList" style={{display: 'flex', flexDirection: 'column'}}>
                 {
-                    eskapList.length > 0 ? eskapList.map((elem, index) => elem.name.includes(filtre) ? <EskapItem eskap={elem} key={index} filter={eskapFilter}/> : null) : <p>Empty List</p>
+                    eskapList.length > 0 ? eskapList.map((elem, index) => 
+                        elem.name.includes(filtre) ? 
+                            <EskapItem eskap={elem} key={index} filter={eskapFilter} reloadInfos={fetchData}/> : null) 
+                                : 
+                            <p>Empty List</p>
                 }
             </div>
         </>
