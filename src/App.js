@@ -7,25 +7,27 @@ import {
 } from "react-router-dom";
 import EskapInfo from './components/EskapInfo';
 import Navbar from './components/NavBar';
+import { Container } from 'react-bootstrap';
+import { AuthProvider } from './contexts/AuthContext';
+import PrivateRoute from './routes/PrivateRoute';
+import Login from './components/authentification/Login';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <h1>Eskap-React-App</h1>
+    <AuthProvider>
+      <Router>
         <Navbar/>
-        <Main/>
-      </div>
-    </Router>
-  );
-}
-
-function Main() {
-  return (
-    <Switch>
-      <Route exact path="/" children={<EskapList/>}/>
-      <Route path="/:id" children={<EskapInfo/>}/>
-    </Switch>
+        <Container className="align-items-center justify-content-center" style={{minHeight : "90vh"}}>
+          <>
+            <Switch>
+              <PrivateRoute exact path="/" component={() => <EskapList/>}/>
+              <PrivateRoute path="/eskap/:id" component={() => <EskapInfo/>}/>
+              <Route path="/login" component={Login}/>
+            </Switch>
+          </>
+        </Container>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -38,7 +38,7 @@ function EskapItem({eskap, filter, reloadInfos}) {
             {((filter === "all") || (filter === "officials" && isOfficial) || (filter === "nonofficials" && !isOfficial))&&
                <Card className="eskapItem m-1" style={{}}>
                     <Card.Body>
-                        <Card.Title><Link to={`/${id}`}>{name} | id : {id} </Link></Card.Title>
+                        <Card.Title><Link to={`/eskap/${id}`}>{name} | id : {id} </Link></Card.Title>
                         <Card.Subtitle>{`Adresse : ${address}`}</Card.Subtitle>
                         <ListGroup variant="list-group-flush m-2">
                             <ListGroup.Item><h3>Themes : </h3> <ul>{themes.map((elem, index) => <li key={index}>{elem}</li>)}</ul></ListGroup.Item>
