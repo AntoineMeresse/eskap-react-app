@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import EskapInfo from './components/EskapInfo';
-import Navbar from './components/NavBar';
+import NavbarEskap from './components/NavbarEskap';
 import { Container } from 'react-bootstrap';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './routes/PrivateRoute';
@@ -16,7 +16,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Navbar/>
+        <NavbarEskap/>
         <Container className="align-items-center justify-content-center" style={{minHeight : "90vh"}}>
           <>
             <Switch>

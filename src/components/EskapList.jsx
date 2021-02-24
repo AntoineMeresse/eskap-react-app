@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import EskapItem from './EskapItem';
 import axios from '../axios';
-
+import { Button } from 'react-bootstrap';
 
 function EskapList() {
 
@@ -21,14 +21,16 @@ function EskapList() {
     } , []);
 
     return (
-        <>
-            <button onClick={fetchData}>Reload</button>
+        <div className="p-3">
+            <div className="d-flex flex-row justify-content-between">
+            <Button onClick={fetchData}>Reload</Button>
             <select value={eskapFilter} onChange={(event) => setEskapFilter(event.target.value)}>
                 <option value='all'>All Eskaps</option>
                 <option value="officials">Official</option>
                 <option value="nonofficials">Non Official</option>
             </select>
             <input placeholder="Nom" type="text" value={filtre} onChange={(event) => setFiltre(event.target.value)}></input>
+            </div>
             <div className="eskapList" style={{display: 'flex', flexDirection: 'column'}}>
                 {
                     eskapList.length > 0 ? eskapList.map((elem, index) => 
@@ -38,7 +40,7 @@ function EskapList() {
                             <p>Empty List</p>
                 }
             </div>
-        </>
+        </div>
     )
 }
 
