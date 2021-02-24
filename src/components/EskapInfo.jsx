@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom";
 import axios from '../axios';
+import { Button } from 'react-bootstrap';
 
 function EskapInfo() {
     
@@ -43,23 +44,23 @@ function EskapInfo() {
     }, [id]);
 
     return (
-        <div>
-            <p>ID : {id}</p>
-            <form>
-                <div><label>Nom : <input type="text" value={name} onChange={(event) => setName(event.target.value)}/></label></div>
-                <div><label>Difficulty : <input type="text" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}/></label></div>
-                <div><label>Min Price : <input type="number" value={minprice} onChange={(event) => setMinPrice(event.target.value)}/></label></div>
-                <div><label>Max Price : <input type="number" value={maxprice} onChange={(event) => setMaxPrice(event.target.value)}/></label></div>
-                <div><label>ImageUrl : <input type="text" value={imgurl} onChange={(event) => setImgUrl(event.target.value)}/></label></div>
-                <div><label>Description : <input type="text" value={description} onChange={(event) => setDescription(event.target.value)}/></label></div>
-                <div><label>Number : <input type="number" value={number} onChange={(event) => setNumber(event.target.value)}/></label></div>
-                <div><label>street : <input type="text" value={street} onChange={(event) => setStreet(event.target.value)}/></label></div>
-                <div><label>city : <input type="text" value={city} onChange={(event) => setCity(event.target.value)}/></label></div>
-                <div><label>country : <input type="text" value={country} onChange={(event) => setCountry(event.target.value)}/></label></div>
-                <div><label>latitude : <input type="number" value={latitude} onChange={(event) => setLatitude(event.target.value)}/></label></div>
-                <div><label>longitude : <input type="number" value={longitude} onChange={(event) => setLongitude(event.target.value)}/></label></div>
-                <div><label>official : <input type="checkbox" checked={official} onChange={() => setOfficial(!official)}/></label></div>
-                <button>Change datas</button>
+        <div className="pt-3">
+            <h2>Eskap with ID : {id}</h2>
+            <form className="d-flex flex-column">
+                <label>Nom : <input type="text" value={name} onChange={(event) => setName(event.target.value)}/></label>
+                <label>Difficulty : <input type="text" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}/></label>
+                <label>Min Price : <input type="number" value={minprice} onChange={(event) => setMinPrice(event.target.value)}/></label>
+                <label>Max Price : <input type="number" value={maxprice} onChange={(event) => setMaxPrice(event.target.value)}/></label>
+                <label>ImageUrl : <input type="text" value={imgurl} onChange={(event) => setImgUrl(event.target.value)}/></label>
+                <label>Description : <input type="text" value={description} onChange={(event) => setDescription(event.target.value)}/></label>
+                <label>Number : <input type="number" value={number} onChange={(event) => setNumber(event.target.value)}/></label>
+                <label>street : <input type="text" value={street} onChange={(event) => setStreet(event.target.value)}/></label>
+                <label>city : <input type="text" value={city} onChange={(event) => setCity(event.target.value)}/></label>
+                <label>country : <input type="text" value={country} onChange={(event) => setCountry(event.target.value)}/></label>
+                <label>latitude : <input type="number" value={latitude} onChange={(event) => setLatitude(event.target.value)}/></label>
+                <label>longitude : <input type="number" value={longitude} onChange={(event) => setLongitude(event.target.value)}/></label>
+                <label>official : <input type="checkbox" checked={official} onChange={() => setOfficial(!official)}/></label>
+                <Button>Change datas</Button>
             </form>
         </div>
     )
