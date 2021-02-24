@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import EskapItem from './EskapItem';
 import axios from '../axios';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner} from 'react-bootstrap';
 
 function EskapList() {
 
@@ -23,13 +23,13 @@ function EskapList() {
     return (
         <div className="p-3">
             <div className="d-flex flex-row justify-content-between">
-            <Button onClick={fetchData}>Reload</Button>
-            <select value={eskapFilter} onChange={(event) => setEskapFilter(event.target.value)}>
-                <option value='all'>All Eskaps</option>
-                <option value="officials">Official</option>
-                <option value="nonofficials">Non Official</option>
-            </select>
-            <input placeholder="Nom" type="text" value={filtre} onChange={(event) => setFiltre(event.target.value)}></input>
+                <Button onClick={fetchData}>Reload &#8635;</Button>
+                <select value={eskapFilter} onChange={(event) => setEskapFilter(event.target.value)}>
+                    <option value='all'>All Eskaps</option>
+                    <option value="officials">Official</option>
+                    <option value="nonofficials">Non Official</option>
+                </select>
+                <input placeholder="Nom" type="text" value={filtre} onChange={(event) => setFiltre(event.target.value)}></input>
             </div>
             <div className="eskapList" style={{display: 'flex', flexDirection: 'column'}}>
                 {
@@ -37,7 +37,9 @@ function EskapList() {
                         elem.name.includes(filtre) ? 
                             <EskapItem eskap={elem} key={index} filter={eskapFilter} reloadInfos={fetchData}/> : null) 
                                 : 
-                            <p>Empty List</p>
+                            <>
+                                <Spinner animation="border" />
+                            </>
                 }
             </div>
         </div>
