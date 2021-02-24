@@ -26,13 +26,13 @@ function NavbarEskap() {
         </Nav>
 
         <Navbar.Collapse className="justify-content-end">
-          <Button>Logout</Button>
+          <Button onClick={logout}>Logout</Button>
         </Navbar.Collapse>
       </>
     ):
     (
       <Nav className="mr-auto">
-        <Navbar.Text><Link to="/login">Login</Link></Navbar.Text>
+        <Link to="/login"><Button>Login</Button></Link>
       </Nav>
     )
   }
