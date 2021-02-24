@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom";
 import axios from '../axios';
-import { Card, Form, Button, Alert } from 'react-bootstrap'
+import { Card, Form, Button} from 'react-bootstrap'
 
 function EskapInfo() {
     

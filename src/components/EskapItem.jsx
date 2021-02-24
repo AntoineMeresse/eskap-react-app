@@ -9,15 +9,6 @@ function EskapItem({eskap, filter, reloadInfos}) {
     const address = `${number} ${street} ${city}`;
     const [isOfficial, setIsOfficial] = useState(official);
 
-    const config = {
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Origin": "*",
-        },
-        data: {},
-      };
-
-
     async function removeEskap(id) {
         //console.log("Remove eskap game ==> Id : "+id);
         axios.delete(`/eskaps/${id}`)
